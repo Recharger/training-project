@@ -48,6 +48,11 @@ nav a {
 	align-items: flex-end;
 }
 
+.container {
+	height: 100%;
+	margin: 0;
+}
+
 .section {
 	min-width: 100%;
 	min-height: 100%;
@@ -69,5 +74,9 @@ nav a {
 	border-style: solid;
 	border-color: white;
 	padding: 15px;
+}
+
+.aside {
+	position: fixed;
 }
 
