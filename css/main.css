@@ -9,6 +9,44 @@ body {
 	background: -o-linear-gradient(45deg, #c920bb , #13f2d8);
 	background-attachment: fixed; 
 }
+.container {
+	height: 100%;
+}
+
+.aside {
+	position: fixed;
+    bottom: 100px;
+    right: 100px;
+    width: 250px;
+    height: 150px;
+}
+
+.aside nav {
+	margin-bottom: 20px;
+}
+
+nav a {
+	text-decoration: none;
+	color: white;
+	font-size: 30px;
+}
+
+.sources img {
+	margin-right: 25px;
+	vertical-align: super;
+}
+
+.sources {
+	margin-left: 250px; 
+}
+
+.navigation {
+	float: right;
+	display: inline-flex;
+	flex-flow: column nowrap;
+	justify-content: flex-end;
+	align-items: flex-end;
+}
 
 .section {
 	min-width: 100%;
@@ -16,6 +54,15 @@ body {
 	color: white;
 	font-size: 75px;
 	font-family: Arial;
+	font-weight: normal;
+	padding: 50px;
+}
+
+.content {
+	margin: 0 30px;
+	width: 66%;
+	float: left;
+	line-height: 100px;
 }
 
 .exponenta {
