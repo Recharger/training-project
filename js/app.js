@@ -1,35 +1,39 @@
-var isMove = false;
 var oldCurrentSection = 1;
-var maxSection = 3;
+var oldWinScrollTop = 0;
+var maxSection = 4;
+var blockMyScrollHandler = false;
 
-function scrollToElement(element, duration) {
+
+function scrollToElement(element, duration, complete) {
 	$('html, body').animate({
 		scrollTop: element.offset().top
-	}, duration);
+	}, duration, complete);
 };
 
-function generateStopPoints(step, count) {
-	var listStopPoints = [];
-	var diff = 0;
-	for (let i = 0; i < count; i++) {
-		listStopPoints.push(10+diff);
-		diff = step;
-	}
-	return listStopPoints;
+function goTo(section) {
+	blockMyScrollHandler = true;
+	scrollToElement($("#s"+section), 700, () => {
+		blockMyScrollHandler = false;
+	});
 }
 
-function isBetween(value, left, right) {
-	return value > left && value < right;
-}
 
 $(document).ready(() => {
 
-	var listStopPoints = generateStopPoints($('#s1'), maxSection);
-
 	$(document).scroll(() => {
-		var newCurrentSection = Math.round($(document).scrollTop() / $("#s1").height()) + 1;
+		if (blockMyScrollHandler) {
+			return;
+		}
+		if ($(document).scrollTop() >= oldWinScrollTop) {
+			var fix = 300;
+		} else {
+			var fix = -300;
+		}
+		var newCurrentSection = Math.round(($(document).scrollTop() + fix) / $("#s1").height()) + 1;
 		if (newCurrentSection != oldCurrentSection) {
-			scrollToElement($("#s"+newCurrentSection), 700);
+			scrollToElement($("#s"+newCurrentSection), 700, () => {
+				oldWinScrollTop = $(document).scrollTop();
+			});
 			oldCurrentSection = newCurrentSection;
 		}
 	});
