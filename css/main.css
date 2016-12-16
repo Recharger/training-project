@@ -57,17 +57,17 @@ nav a {
 	min-width: 100%;
 	min-height: 100%;
 	color: white;
-	font-size: 75px;
+	font-size: 60px;
 	font-family: Arial;
 	font-weight: normal;
-	padding: 50px;
+	/*padding: 50px;*/
 }
 
 .content {
-	margin: 0 30px;
+	margin: 70px;
 	width: 66%;
 	float: left;
-	line-height: 100px;
+	line-height: 80px;
 }
 
 .exponenta {
