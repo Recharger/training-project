@@ -1,21 +1,22 @@
-$(document).ready(() => {
-	var currentSection = 1;
-	var maxSection = 3;
-	var move = true;
+var isMove = false;
+var currentSection = 1;
+var maxSection = 3;
 
-	window.onscroll = (e) => {
-		if (currentSection < maxSection && move) {
+$(document).ready(() => {
+
+	$(document).scroll((e) => {
+		e.preventDefault();
+		if (currentSection < maxSection && !isMove) {
+			isMove = true;
 			currentSection+=1;
-			move = false;
 			$('html, body').animate({
-				scrollTop: $('#section-'+currentSection).offset().top,
+				scrollTop: $("#s"+currentSection).offset().top
 			}, {
-				duration: 3000,
+				duration: 1000,
 				complete: () => {
-					move = !move;
-					console.log('complate');
+					isMove = false;
 				}
 			});
 		}
-	};
+	});
 });
