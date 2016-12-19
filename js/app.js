@@ -1,7 +1,8 @@
-var oldCurrentSection = 1;
+var сurrentSection = 1;
 var oldWinScrollTop = 0;
 var maxSection = 4;
 var blockMyScrollHandler = false;
+var animationSpeed = 400;
 
 
 function scrollToElement(element, duration, complete) {
@@ -12,7 +13,9 @@ function scrollToElement(element, duration, complete) {
 
 function goTo(section) {
 	blockMyScrollHandler = true;
-	scrollToElement($("#s"+section), 700, () => {
+	сurrentSection = section;
+	scrollToElement($("#s"+section), animationSpeed, () => {
+		oldWinScrollTop = $(document).scrollTop();
 		blockMyScrollHandler = false;
 	});
 }
@@ -21,20 +24,12 @@ function goTo(section) {
 $(document).ready(() => {
 
 	$(document).scroll(() => {
-		if (blockMyScrollHandler) {
-			return;
-		}
-		if ($(document).scrollTop() >= oldWinScrollTop) {
-			var fix = 300;
-		} else {
-			var fix = -300;
-		}
-		var newCurrentSection = Math.round(($(document).scrollTop() + fix) / $("#s1").height()) + 1;
-		if (newCurrentSection != oldCurrentSection) {
-			scrollToElement($("#s"+newCurrentSection), 700, () => {
-				oldWinScrollTop = $(document).scrollTop();
-			});
-			oldCurrentSection = newCurrentSection;
+		if (!blockMyScrollHandler) {
+			if ($(document).scrollTop() > oldWinScrollTop && сurrentSection < maxSection) {
+				goTo(сurrentSection+1);
+			} else if ($(document).scrollTop() < oldWinScrollTop && сurrentSection > 1) {
+				goTo(сurrentSection-1);
+			}
 		}
 	});
 
